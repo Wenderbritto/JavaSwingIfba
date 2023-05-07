@@ -8,5 +8,6 @@ CREATE TABLE `conta` (
   `saldo` double NOT NULL,
   `limite` double NOT NULL,
   PRIMARY KEY (`id`)
+
 );
 
