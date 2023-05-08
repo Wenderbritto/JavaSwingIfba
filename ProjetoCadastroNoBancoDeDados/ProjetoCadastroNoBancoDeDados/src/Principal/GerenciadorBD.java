@@ -8,7 +8,7 @@ public class GerenciadorBD {
     private final String servidor = "127.0.0.1:3306";
     private final String banco = "bancoabc";
     private final String login = "xx";
-    private final String senha = "xx";
+    private final String senha = "";
 
     public Connection conectar() throws Exception {
         
