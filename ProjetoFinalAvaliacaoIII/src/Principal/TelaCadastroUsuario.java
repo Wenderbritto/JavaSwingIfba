@@ -136,6 +136,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
                 comando.executeUpdate();
                 JOptionPane.showMessageDialog(this,"Usuário Cadastrado com Sucesso!");
                 Limpar();
+                
             }
             else{
                 
