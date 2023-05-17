@@ -22,9 +22,9 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lblTitulo = new javax.swing.JLabel();
+        lblLogin = new javax.swing.JLabel();
+        lblSenha = new javax.swing.JLabel();
         txtLogin = new javax.swing.JTextField();
         txtSenha = new javax.swing.JTextField();
         btnCadastrar = new javax.swing.JButton();
@@ -32,14 +32,14 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela de Cadastro de Usuário");
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setText("Tela de Cadastro de Usuário");
+        lblTitulo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblTitulo.setText("Tela de Cadastro de Usuário");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setText("Login:");
+        lblLogin.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblLogin.setText("Login:");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setText("Senha:");
+        lblSenha.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblSenha.setText("Senha:");
 
         txtLogin.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
@@ -62,18 +62,16 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(49, 49, 49)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lblSenha)
+                            .addComponent(lblLogin))
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtLogin)
                             .addComponent(txtSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE))
                         .addGap(27, 27, 27))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(97, Short.MAX_VALUE)
-                        .addComponent(jLabel1)))
+                        .addComponent(lblTitulo)))
                 .addGap(74, 74, 74))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -84,14 +82,14 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addComponent(jLabel1)
+                .addComponent(lblTitulo)
                 .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(lblLogin)
                     .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                    .addComponent(lblSenha)
                     .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addComponent(btnCadastrar)
@@ -100,7 +98,22 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    private static boolean vericar(String login, String senha){
+        
+        return !login.isEmpty() && !senha.isEmpty();
+    
+   
+    }
+    
+    private void Limpar(){
+        
+        txtLogin.setText("");
+        txtSenha.setText("");
+    
+    
+    }
+    
+    
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         
         String login = String.valueOf(txtLogin.getText());
@@ -117,16 +130,25 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
             comando.setString(1,login);
             comando.setString(2, senha);
             
-            comando.executeUpdate();
             
-            JOptionPane.showMessageDialog(this,"Conta cadastrada");
+            
+            if(vericar(login, senha)){
+                comando.executeUpdate();
+                JOptionPane.showMessageDialog(this,"Usuário Cadastrado com Sucesso!");
+                Limpar();
+            }
+            else{
+                
+                JOptionPane.showMessageDialog(this,"Todos os campos são obrigatórios.");
+                
+            }
+            
             
         }
         catch (Exception ex)
         {
-            JOptionPane.showMessageDialog(this,"Nao conseguiu cadastrar");
-        
-        
+            
+
         }
                 
         
@@ -168,9 +190,9 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel lblLogin;
+    private javax.swing.JLabel lblSenha;
+    private javax.swing.JLabel lblTitulo;
     private javax.swing.JTextField txtLogin;
     private javax.swing.JTextField txtSenha;
     // End of variables declaration//GEN-END:variables
