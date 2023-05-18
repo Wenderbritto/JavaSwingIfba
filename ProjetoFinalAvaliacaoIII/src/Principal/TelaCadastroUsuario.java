@@ -4,6 +4,8 @@ package Principal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 public class TelaCadastroUsuario extends javax.swing.JFrame {
 
     /**
@@ -129,6 +131,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         {
             comando.setString(1,login);
             comando.setString(2, senha);
+            
             
             
             

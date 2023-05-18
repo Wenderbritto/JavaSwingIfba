@@ -26,7 +26,7 @@ public class TelaListagemUsuarios extends javax.swing.JFrame {
         
         try{ 
             
-            String sql = "SELECT login, senha FROM usuario;";
+            String sql = "SELECT id, login, senha FROM usuario;";
             
             Statement comando = conexao.createStatement();
             
@@ -34,18 +34,21 @@ public class TelaListagemUsuarios extends javax.swing.JFrame {
             
             DefaultTableModel tabelaUsuarios = (DefaultTableModel) tblUsuarios.getModel();
             
+            
+            
   
             while(resultado.next()){
             
             
             Object[] Usuario = new Object[]
             {
-                resultado.getString("id"),
+                resultado.getInt("id"),
                 resultado.getString("login"),
                 resultado.getString("senha")
             };
             
             tabelaUsuarios.addRow(Usuario);
+            
             
             }
         }
@@ -53,6 +56,12 @@ public class TelaListagemUsuarios extends javax.swing.JFrame {
             
             JOptionPane.showMessageDialog(this, "Não conseguiu");
         }
+        
+        
+        
+    
+    
+    
     }
 
     @SuppressWarnings("unchecked")
@@ -70,15 +79,22 @@ public class TelaListagemUsuarios extends javax.swing.JFrame {
 
         tblUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
+        tblUsuarios.getTableHeader().setReorderingAllowed(false);
+        tblUsuarios.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                tblUsuariosAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         jScrollPane1.setViewportView(tblUsuarios);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -106,6 +122,10 @@ public class TelaListagemUsuarios extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tblUsuariosAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tblUsuariosAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblUsuariosAncestorAdded
 
 
     public static void main(String args[]) {
