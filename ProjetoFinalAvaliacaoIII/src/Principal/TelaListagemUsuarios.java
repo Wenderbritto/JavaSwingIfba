@@ -2,7 +2,7 @@ package Principal;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -12,6 +12,8 @@ public class TelaListagemUsuarios extends javax.swing.JFrame {
 
     public TelaListagemUsuarios() {
         initComponents();
+        
+        this.setLocationRelativeTo(null);
         
         CarregarTabela();
     }
@@ -26,11 +28,12 @@ public class TelaListagemUsuarios extends javax.swing.JFrame {
         
         try{ 
             
-            String sql = "SELECT id, login, senha FROM usuario;";
             
-            Statement comando = conexao.createStatement();
             
-            ResultSet resultado = comando.executeQuery(sql);
+            PreparedStatement comando = conexao.prepareStatement(
+                    "SELECT id, login, senha FROM linguagemi.usuario;");
+            
+            ResultSet resultado = comando.executeQuery();
             
             DefaultTableModel tabelaUsuarios = (DefaultTableModel) tblUsuarios.getModel();
             
@@ -42,7 +45,7 @@ public class TelaListagemUsuarios extends javax.swing.JFrame {
             
             Object[] Usuario = new Object[]
             {
-                resultado.getInt("id"),
+                resultado.getString("id"),
                 resultado.getString("login"),
                 resultado.getString("senha")
             };
@@ -73,6 +76,8 @@ public class TelaListagemUsuarios extends javax.swing.JFrame {
         tblUsuarios = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Tela de Listagem de Usuários");
+        setPreferredSize(new java.awt.Dimension(393, 300));
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblTitulo.setText("Tela de Listagem de Usuários");
@@ -82,19 +87,9 @@ public class TelaListagemUsuarios extends javax.swing.JFrame {
 
             },
             new String [] {
-
+                "Title 1", "Title 2", "Title 3"
             }
         ));
-        tblUsuarios.getTableHeader().setReorderingAllowed(false);
-        tblUsuarios.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                tblUsuariosAncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
         jScrollPane1.setViewportView(tblUsuarios);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -102,30 +97,27 @@ public class TelaListagemUsuarios extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(104, 104, 104)
-                .addComponent(lblTitulo)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblTitulo)
+                        .addGap(80, 80, 80))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(14, 14, 14)
                 .addComponent(lblTitulo)
-                .addGap(27, 27, 27)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void tblUsuariosAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tblUsuariosAncestorAdded
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tblUsuariosAncestorAdded
 
 
     public static void main(String args[]) {
