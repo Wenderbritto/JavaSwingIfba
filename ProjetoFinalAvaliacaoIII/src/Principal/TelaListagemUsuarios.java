@@ -29,26 +29,15 @@ public class TelaListagemUsuarios extends javax.swing.JFrame {
         
         try{ 
             
-            
-            
+          
             PreparedStatement comando = conexao.prepareStatement(
                     "SELECT id, login, senha FROM linguagemi.usuario;");
             
             ResultSet resultado = comando.executeQuery();
             
-            
-            //String sql = "SELECT id, login, senha FROM linguagemi;";
-            
-            //Statement comando = conexao.createStatement();
-            
-            //ResultSet resultado = comando.executeQuery(sql);
-            
-            
-            
+     
             DefaultTableModel tabelaUsuarios = (DefaultTableModel) tblUsuarios.getModel();
-            
-            
-            
+           
   
             while(resultado.next()){
             
@@ -74,14 +63,7 @@ public class TelaListagemUsuarios extends javax.swing.JFrame {
             
             bd.Desconectar();
         
-        
-        
         }
-        
-        
-    
-    
-    
     }
 
     @SuppressWarnings("unchecked")

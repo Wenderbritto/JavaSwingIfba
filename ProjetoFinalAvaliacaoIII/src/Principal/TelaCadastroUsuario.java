@@ -134,9 +134,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
             comando.setString(1,login);
             comando.setString(2, senha);
             
-            
-            
-            
+        
             if(vericar(login, senha)){
                 comando.executeUpdate();
                 JOptionPane.showMessageDialog(this,"Usuário Cadastrado com Sucesso!");
@@ -160,13 +158,8 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         finally{
             
             bd.Desconectar();
-        
-        
-        
         }
-                
-        
-        
+                 
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     
