@@ -34,11 +34,25 @@ public class GerenciadorBD {
         }
         
         return conexao;
-    
-    
-    
-    
     }
     
+    public void Desconectar(){
+        
+        
+        try
+        {
+            
+            if(conexao != null && !conexao.isClosed()){
+                
+                conexao.close();
+            }
+        }
+        catch(SQLException ex){
+            
+            System.out.println("Não conseguiu desconectar");
+        
+        
+        }
+    }
     
 }

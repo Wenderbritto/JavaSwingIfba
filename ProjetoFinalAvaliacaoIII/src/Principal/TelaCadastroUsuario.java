@@ -156,6 +156,14 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
             
 
         }
+        
+        finally{
+            
+            bd.Desconectar();
+        
+        
+        
+        }
                 
         
         

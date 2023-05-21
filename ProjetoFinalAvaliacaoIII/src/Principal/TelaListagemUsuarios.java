@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import java.sql.Statement;
 
 public class TelaListagemUsuarios extends javax.swing.JFrame {
 
@@ -35,6 +36,15 @@ public class TelaListagemUsuarios extends javax.swing.JFrame {
             
             ResultSet resultado = comando.executeQuery();
             
+            
+            //String sql = "SELECT id, login, senha FROM linguagemi;";
+            
+            //Statement comando = conexao.createStatement();
+            
+            //ResultSet resultado = comando.executeQuery(sql);
+            
+            
+            
             DefaultTableModel tabelaUsuarios = (DefaultTableModel) tblUsuarios.getModel();
             
             
@@ -59,7 +69,14 @@ public class TelaListagemUsuarios extends javax.swing.JFrame {
             
             JOptionPane.showMessageDialog(this, "Não conseguiu");
         }
+        finally 
+        {
+            
+            bd.Desconectar();
         
+        
+        
+        }
         
         
     
@@ -87,7 +104,7 @@ public class TelaListagemUsuarios extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3"
+                "id", "login", "senha"
             }
         ));
         jScrollPane1.setViewportView(tblUsuarios);
@@ -97,23 +114,23 @@ public class TelaListagemUsuarios extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblTitulo)
-                        .addGap(80, 80, 80))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addComponent(lblTitulo)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addGap(23, 23, 23)
                 .addComponent(lblTitulo)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
