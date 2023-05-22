@@ -51,12 +51,12 @@ public class TelaListagemUsuarios extends javax.swing.JFrame {
             
             tabelaUsuarios.addRow(Usuario);
             
-            
+       
             }
         }
         catch (SQLException ex){
             
-            JOptionPane.showMessageDialog(this, "Não conseguiu");
+            JOptionPane.showMessageDialog(this, "Não conseguiu!");
         }
         finally 
         {
@@ -86,7 +86,7 @@ public class TelaListagemUsuarios extends javax.swing.JFrame {
 
             },
             new String [] {
-                "id", "login", "senha"
+                "id", "Login", "Senha"
             }
         ));
         jScrollPane1.setViewportView(tblUsuarios);
@@ -112,7 +112,7 @@ public class TelaListagemUsuarios extends javax.swing.JFrame {
                 .addComponent(lblTitulo)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
 
         pack();

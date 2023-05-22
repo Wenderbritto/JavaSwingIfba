@@ -1,8 +1,10 @@
 
 package Principal;
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -130,14 +132,16 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         PreparedStatement comando = conexao.prepareStatement(
         "Insert INTO usuario (login, senha) VALUES (?,?)")
         )
+            
+            
         {
             comando.setString(1,login);
             comando.setString(2, senha);
-            
-        
+         
+         
             if(vericar(login, senha)){
                 comando.executeUpdate();
-                JOptionPane.showMessageDialog(this,"Usuário Cadastrado com Sucesso!");
+                JOptionPane.showMessageDialog(this,"Usuário Cadastrado com Sucesso!"  );
                 Limpar();
                 
             }
@@ -146,7 +150,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this,"Todos os campos são obrigatórios.");
                 
             }
-            
+        
             
         }
         catch (Exception ex)
@@ -159,7 +163,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
             
             bd.Desconectar();
         }
-                 
+       
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     
