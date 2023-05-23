@@ -8,6 +8,8 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 public class TelaCadastroUsuario extends javax.swing.JFrame {
 
     /**
@@ -104,7 +106,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private static boolean vericar(String login, String senha){
+    private static boolean verificar(String login, String senha){
         
         return !login.isEmpty() && !senha.isEmpty();
     
@@ -122,29 +124,51 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
     
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         
+        //Atribui para variável login, as informações de txtLogin.
         String login = String.valueOf(txtLogin.getText());
+        //Atribui para variável senha, as informações de txtSenha.
         String senha = String.valueOf(txtSenha.getText());
         
         GerenciadorBD bd = new GerenciadorBD();
         
+        Connection conexao = bd.Conectar();
         
-        try (Connection conexao = bd.Conectar();
-        PreparedStatement comando = conexao.prepareStatement(
-        "Insert INTO usuario (login, senha) VALUES (?,?)")
-        )
+        try 
+        {  
+            String insert = "Insert INTO usuario (login, senha) VALUES (?,?)";
+            
+            String id[] = { "id" };
             
             
-        {
-            comando.setString(1,login);
+        PreparedStatement comando = conexao.prepareStatement(insert,id);
+                   
+            comando.setString(1, login);
             comando.setString(2, senha);
-         
-         
-            if(vericar(login, senha)){
-                comando.executeUpdate();
-                JOptionPane.showMessageDialog(this,"Usuário Cadastrado com Sucesso!"  );
+            
+            if(verificar(login, senha)){
+                
+            comando.execute();
+            }
+        
+            ResultSet resul = comando.getGeneratedKeys();
+            
+            int aid =0;
+           
+            
+            if(verificar(login, senha)){
+                
+                
+                if(resul.next()){
+                    
+                    aid = resul.getInt(1);
+                
+                }
+                
+                JOptionPane.showMessageDialog(this,"Usuário Cadastrado com Sucesso!\n Id gerado:" + aid  );
                 Limpar();
                 
             }
+            
             else{
                 
                 JOptionPane.showMessageDialog(this,"Todos os campos são obrigatórios.");
@@ -167,6 +191,8 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     
+        
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
