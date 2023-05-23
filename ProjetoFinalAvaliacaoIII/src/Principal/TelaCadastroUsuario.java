@@ -129,42 +129,54 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         //Atribui para variável senha, as informações de txtSenha.
         String senha = String.valueOf(txtSenha.getText());
         
+        //Cria um objeto "bd" para fazer conexão com o Banco de Dados.
         GerenciadorBD bd = new GerenciadorBD();
         
+        //Executa a conexão com o Banco de Dados.
         Connection conexao = bd.Conectar();
+        
         
         try 
         {  
+            //Variável para armazenar o comando de inserir info no Banco de Dados.
             String insert = "Insert INTO usuario (login, senha) VALUES (?,?)";
             
+            //Cria um vetor para armazenar as informações das colunas.
             String id[] = { "id" };
             
+            //Comando que vai ser executado no Banco de Dados.
+            PreparedStatement comando = conexao.prepareStatement(insert,id);
             
-        PreparedStatement comando = conexao.prepareStatement(insert,id);
-                   
+            //Faz a associação dos valores digitados com as variáveis para serem colocados no BD.
             comando.setString(1, login);
             comando.setString(2, senha);
             
+            //if para vericar se os campos foram preenchidos, antes que o comando seja executado.
             if(verificar(login, senha)){
                 
+            //Comando para executar no Banco de Dados.
             comando.execute();
             }
-        
+            
+            //Armazena o id gerado pelo BD, depois que o INSERT foi executado.
             ResultSet resul = comando.getGeneratedKeys();
             
-            int aid =0;
+            //Variável
+            int cod =0;
            
-            
+            //Só vai ser executado JOptionPane se os campos tiverem sido preenchidos.
             if(verificar(login, senha)){
                 
-                
+                //Vai ler os id gerado
                 if(resul.next()){
                     
-                    aid = resul.getInt(1);
+                    cod = resul.getInt(1);
                 
                 }
+                //Caixa de diálogo
+                JOptionPane.showMessageDialog(this,"Usuário Cadastrado com Sucesso!\n Id gerado: " + cod  );
                 
-                JOptionPane.showMessageDialog(this,"Usuário Cadastrado com Sucesso!\n Id gerado:" + aid  );
+                //Limpa os campos.
                 Limpar();
                 
             }
