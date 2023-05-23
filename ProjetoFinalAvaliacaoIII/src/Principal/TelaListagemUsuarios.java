@@ -22,33 +22,37 @@ public class TelaListagemUsuarios extends javax.swing.JFrame {
     
     private void CarregarTabela(){
         
-        
+        //Cria um objeto "bd" para fazer conexão com o Banco de Dados.
         GerenciadorBD bd = new GerenciadorBD();
         
+        //Executa a conexão com o Banco de Dados.
         Connection conexao = bd.Conectar();
         
         try{ 
             
-          
+            //Comando SQL que vai ser associado ao "comando".
             PreparedStatement comando = conexao.prepareStatement(
                     "SELECT id, login, senha FROM linguagemi.usuario;");
             
+            //Executa uma consulta no Banco de Dados.
             ResultSet resultado = comando.executeQuery();
             
-     
+            //Modelo de tabela padrão.
             DefaultTableModel tabelaUsuarios = (DefaultTableModel) tblUsuarios.getModel();
            
-  
+            //"Existe uma próxima linha?", "resultado = onde está a consultado feita".
             while(resultado.next()){
             
-            
+            //"Object= aceita todos os tipos de dados."
             Object[] Usuario = new Object[]
             {
-                resultado.getString("id"),
-                resultado.getString("login"),
-                resultado.getString("senha")
+                resultado.getString("id"),//Na primeira linha da tabela pegue o id e guarde no indice 0.
+                resultado.getString("login"),//Na primeira linha da tabela pegue o login e guarde no indice 1.
+                resultado.getString("senha")//Na primeira linha da tabela pegue a senha e guarde no indice 2.
+            //Percorre a tabela linha por linha, guarda o resultado e só termina quando o While for falso "Não existir próxima linha".
             };
             
+            //Vai pegar o resultado que está em "Usuario" e adicionar na tabelaUsuarios do java.
             tabelaUsuarios.addRow(Usuario);
             
        
