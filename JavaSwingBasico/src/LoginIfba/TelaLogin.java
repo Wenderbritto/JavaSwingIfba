@@ -122,7 +122,7 @@ public class TelaLogin extends javax.swing.JFrame {
         
         if("Aluno".equals(strUsuario) && senha == 1234){
             
-            System.out.println("Dados Corretos");
+            System.out.println("Dados Corretoss");
         }else{
             
             System.out.println("Dados Incorretos");
