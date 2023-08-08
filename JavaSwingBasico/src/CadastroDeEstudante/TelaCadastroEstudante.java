@@ -4,6 +4,8 @@
  */
 package CadastroDeEstudante;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author wende
@@ -15,6 +17,8 @@ public class TelaCadastroEstudante extends javax.swing.JFrame {
      */
     public TelaCadastroEstudante() {
         initComponents();
+        
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -26,7 +30,7 @@ public class TelaCadastroEstudante extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
+        btgTurno = new javax.swing.ButtonGroup();
         pnlPrincipal = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
         lblNome = new javax.swing.JLabel();
@@ -46,6 +50,7 @@ public class TelaCadastroEstudante extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema IFBA - Cadastro de Estudante");
+        setResizable(false);
 
         pnlPrincipal.setBackground(new java.awt.Color(0, 255, 204));
 
@@ -85,13 +90,17 @@ public class TelaCadastroEstudante extends javax.swing.JFrame {
             }
         });
 
+        btgTurno.add(rdbDiurno);
         rdbDiurno.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         rdbDiurno.setForeground(new java.awt.Color(0, 0, 0));
         rdbDiurno.setText("Diurno");
+        rdbDiurno.setActionCommand(rdbDiurno.getText());
 
+        btgTurno.add(rdbNoturno);
         rdbNoturno.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         rdbNoturno.setForeground(new java.awt.Color(0, 0, 0));
         rdbNoturno.setText("Noturno");
+        rdbNoturno.setActionCommand(rdbNoturno.getText());
 
         chbAVA.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         chbAVA.setForeground(new java.awt.Color(0, 0, 0));
@@ -107,6 +116,11 @@ public class TelaCadastroEstudante extends javax.swing.JFrame {
 
         btnCadastrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnCadastrar.setText("Cadastrar");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlPrincipalLayout = new javax.swing.GroupLayout(pnlPrincipal);
         pnlPrincipal.setLayout(pnlPrincipalLayout);
@@ -207,6 +221,27 @@ public class TelaCadastroEstudante extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeActionPerformed
 
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        
+        String nome = txtNome.getText();
+        
+        String curso = cmbCurso.getSelectedItem().toString();
+        
+        String turno = btgTurno.getSelection().getActionCommand();
+        
+        String acesso = (chbAVA.isSelected() ? "-AVA " : " ")  + (chbSUAP.isSelected() ? "-SUAP" : " ");
+        
+        String observacoes = txaObservacoes.getText();
+        
+        String mensagem = "Nome: " + nome +
+                                       "\nCurso: " + curso +
+                                       "\nTurno: " + turno + 
+                                       "\nAcesso: " + acesso +
+                                       "\nObservações: " + observacoes;
+         
+        JOptionPane.showMessageDialog(this, mensagem);
+    }//GEN-LAST:event_btnCadastrarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -243,8 +278,8 @@ public class TelaCadastroEstudante extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup btgTurno;
     private javax.swing.JButton btnCadastrar;
-    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JCheckBox chbAVA;
     private javax.swing.JCheckBox chbSUAP;
     private javax.swing.JComboBox<String> cmbCurso;
