@@ -199,7 +199,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void btnUmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUmActionPerformed
         String nUm = btnUm.getText();
         
-        int numUm = Integer.parseInt(nUm);
+        int numum = Integer.parseInt(nUm);
     }//GEN-LAST:event_btnUmActionPerformed
 
     private void btnNoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNoveActionPerformed
