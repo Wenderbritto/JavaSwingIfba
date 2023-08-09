@@ -43,8 +43,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         btnSete = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
         btnNove = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txaResultado = new javax.swing.JTextArea();
+        txtResultado = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Calculadora\n");
@@ -54,6 +53,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         btnIgual.setText("=");
 
         btnZero.setText("0");
+        btnZero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnZeroActionPerformed(evt);
+            }
+        });
 
         btnUm.setText("1");
         btnUm.addActionListener(new java.awt.event.ActionListener() {
@@ -63,10 +67,25 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         btnQuatro.setText("4");
+        btnQuatro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuatroActionPerformed(evt);
+            }
+        });
 
         btnTres.setText("3");
+        btnTres.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTresActionPerformed(evt);
+            }
+        });
 
         btnDois.setText("2");
+        btnDois.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDoisActionPerformed(evt);
+            }
+        });
 
         btnSoma.setText("+");
 
@@ -77,12 +96,32 @@ public class TelaPrincipal extends javax.swing.JFrame {
         btnDivisao.setText("/");
 
         btnOito.setText("8");
+        btnOito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOitoActionPerformed(evt);
+            }
+        });
 
         btnCinco.setText("5");
+        btnCinco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCincoActionPerformed(evt);
+            }
+        });
 
         btnSeis.setText("6");
+        btnSeis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSeisActionPerformed(evt);
+            }
+        });
 
         btnSete.setText("7");
+        btnSete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSeteActionPerformed(evt);
+            }
+        });
 
         btnLimpar.setText("C");
 
@@ -92,10 +131,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 btnNoveActionPerformed(evt);
             }
         });
-
-        txaResultado.setColumns(20);
-        txaResultado.setRows(5);
-        jScrollPane1.setViewportView(txaResultado);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -141,14 +176,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
                                     .addComponent(btnCinco, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(btnSubtracao, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addComponent(jScrollPane1))
+                    .addComponent(txtResultado))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
+                .addComponent(txtResultado, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnMultiplicacao, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -197,14 +232,56 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUmActionPerformed
-        String nUm = btnUm.getText();
         
-        int numum = Integer.parseInt(nUm);
+        txtResultado.setText(txtResultado.getText() + "1");
+        
+        
     }//GEN-LAST:event_btnUmActionPerformed
 
     private void btnNoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNoveActionPerformed
-        // TODO add your handling code here:
+       
+        txtResultado.setText(txtResultado.getText() + "9");
     }//GEN-LAST:event_btnNoveActionPerformed
+
+    private void btnZeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZeroActionPerformed
+        
+        txtResultado.setText(txtResultado.getText() + "0");
+    }//GEN-LAST:event_btnZeroActionPerformed
+
+    private void btnDoisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoisActionPerformed
+        
+        txtResultado.setText(txtResultado.getText() + "2");
+    }//GEN-LAST:event_btnDoisActionPerformed
+
+    private void btnTresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTresActionPerformed
+        
+        txtResultado.setText(txtResultado.getText() + "3");
+    }//GEN-LAST:event_btnTresActionPerformed
+
+    private void btnQuatroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuatroActionPerformed
+        
+        txtResultado.setText(txtResultado.getText() + "4");
+    }//GEN-LAST:event_btnQuatroActionPerformed
+
+    private void btnCincoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCincoActionPerformed
+        
+        txtResultado.setText(txtResultado.getText() + "5");
+    }//GEN-LAST:event_btnCincoActionPerformed
+
+    private void btnSeisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeisActionPerformed
+        
+        txtResultado.setText(txtResultado.getText() + "6");
+    }//GEN-LAST:event_btnSeisActionPerformed
+
+    private void btnSeteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeteActionPerformed
+        
+        txtResultado.setText(txtResultado.getText() + "7");
+    }//GEN-LAST:event_btnSeteActionPerformed
+
+    private void btnOitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOitoActionPerformed
+        
+        txtResultado.setText(txtResultado.getText() + "8");
+    }//GEN-LAST:event_btnOitoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -259,7 +336,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnUm;
     private javax.swing.JButton btnZero;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea txaResultado;
+    private javax.swing.JTextField txtResultado;
     // End of variables declaration//GEN-END:variables
 }
