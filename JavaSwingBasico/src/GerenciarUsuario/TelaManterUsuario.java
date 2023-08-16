@@ -4,6 +4,9 @@
  */
 package GerenciarUsuario;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author wende
@@ -87,9 +90,19 @@ public class TelaManterUsuario extends javax.swing.JFrame {
 
         btnAlterar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnAlterar.setText("Alterar");
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarActionPerformed(evt);
+            }
+        });
 
         btnExcluir.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -158,10 +171,93 @@ public class TelaManterUsuario extends javax.swing.JFrame {
         
         String codigo = txtCodigo.getText();
         
+        String nome = txtNome.getText();
         
+        if(!codigo.equals("") && !nome.equals(""))
+        {
+            
+            DefaultTableModel tabelaUsuarios = (DefaultTableModel) tblUsuarios.getModel();
+            
+            tabelaUsuarios.addRow(new Object[]{codigo, nome});
+            
+            txtCodigo.setText("");
+            txtNome.setText("");
+            
+            JOptionPane.showMessageDialog(this, "Usuário cadastrado com sucesso!");
         
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "Os campos Código e Nome são obrigatórios.");
         
+        }
+
     }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        
+        int linhaSelecionada = tblUsuarios.getSelectedRow();
+        
+        if(linhaSelecionada != -1)
+        {
+            
+            String codigo = txtCodigo.getText();
+            
+            String nome = txtNome.getText();
+            
+            if(!codigo.equals("") && !nome.equals(""))
+            {
+                
+                tblUsuarios.setValueAt(codigo, linhaSelecionada, 0);
+                tblUsuarios.setValueAt(nome, linhaSelecionada, 1);
+                
+                JOptionPane.showMessageDialog(this, "Usuário alterado com sucesso!");
+            
+            }
+            
+            else
+            {
+                
+                JOptionPane.showMessageDialog(this, "Os campos Código e Nome são obrigatórios.");
+            
+            }
+
+        }
+        
+        else
+        {
+            
+            JOptionPane.showMessageDialog(this, "Selecione uma linha para alteração.");
+        
+        }
+        
+    }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        
+        int linhaSelecionada = tblUsuarios.getSelectedRow();
+        
+        if(linhaSelecionada != -1)
+        {
+            
+            DefaultTableModel tabelaUsuarios = (DefaultTableModel) tblUsuarios.getModel();
+            
+            tabelaUsuarios.removeRow(linhaSelecionada);
+            
+          
+            
+            JOptionPane.showMessageDialog(this, "Usuário excluído com sucesso!");
+        
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "Selecione uma linha para exclusão.");
+        
+        }
+        
+        txtCodigo.setText("");
+        txtNome.setText("");
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
      * @param args the command line arguments
