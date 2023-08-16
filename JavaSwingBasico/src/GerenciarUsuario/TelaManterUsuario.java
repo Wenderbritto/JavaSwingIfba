@@ -43,6 +43,7 @@ public class TelaManterUsuario extends javax.swing.JFrame {
         btnExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblTitulo.setText("Gerenciar Usuário");
