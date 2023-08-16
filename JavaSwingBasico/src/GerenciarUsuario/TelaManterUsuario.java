@@ -86,6 +86,11 @@ public class TelaManterUsuario extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblUsuariosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblUsuarios);
 
         btnAlterar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -258,6 +263,17 @@ public class TelaManterUsuario extends javax.swing.JFrame {
         txtCodigo.setText("");
         txtNome.setText("");
     }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void tblUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsuariosMouseClicked
+        
+        int linhaSelecionada = tblUsuarios.getSelectedRow();
+        
+        if(linhaSelecionada != -1)
+        {
+            txtCodigo.setText(tblUsuarios.getValueAt(linhaSelecionada, 0).toString());
+            txtNome.setText(tblUsuarios.getValueAt(linhaSelecionada, 1).toString());
+        }
+    }//GEN-LAST:event_tblUsuariosMouseClicked
 
     /**
      * @param args the command line arguments
