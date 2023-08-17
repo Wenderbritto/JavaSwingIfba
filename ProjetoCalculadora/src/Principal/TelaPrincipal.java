@@ -15,7 +15,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
      */
     public TelaPrincipal() {
         initComponents();
+        
+        this.setLocationRelativeTo(null);
     }
+    
+        
+        Double valor1, valor2;
+        
+        //Variável para receber qual o operação o usuário deseja realizar
+        String sinal;
+        
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -51,6 +60,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
         btnIgual.setText("=");
+        btnIgual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIgualActionPerformed(evt);
+            }
+        });
 
         btnZero.setText("0");
         btnZero.addActionListener(new java.awt.event.ActionListener() {
@@ -88,10 +102,25 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         btnSoma.setText("+");
+        btnSoma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSomaActionPerformed(evt);
+            }
+        });
 
         btnSubtracao.setText("-");
+        btnSubtracao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubtracaoActionPerformed(evt);
+            }
+        });
 
         btnMultiplicacao.setText("*");
+        btnMultiplicacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMultiplicacaoActionPerformed(evt);
+            }
+        });
 
         btnDivisao.setText("/");
 
@@ -124,6 +153,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         btnLimpar.setText("C");
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparActionPerformed(evt);
+            }
+        });
 
         btnNove.setText("9");
         btnNove.addActionListener(new java.awt.event.ActionListener() {
@@ -282,6 +316,51 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
         txtResultado.setText(txtResultado.getText() + "8");
     }//GEN-LAST:event_btnOitoActionPerformed
+
+    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
+        
+        txtResultado.setText("");
+    }//GEN-LAST:event_btnLimparActionPerformed
+
+    private void btnSomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSomaActionPerformed
+        
+        valor1 = Double.parseDouble(txtResultado.getText());
+        
+        sinal = "soma";
+        
+        txtResultado.setText("");
+    }//GEN-LAST:event_btnSomaActionPerformed
+
+    private void btnIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIgualActionPerformed
+       
+        valor2 = Double.parseDouble(txtResultado.getText());
+        
+        if(sinal == "soma")
+        {
+            txtResultado.setText(String.valueOf(valor1+valor2));
+        }
+        
+        else if(sinal == "menos")
+        {
+            txtResultado.setText(String.valueOf(valor1-valor2));
+        }
+    }//GEN-LAST:event_btnIgualActionPerformed
+
+    private void btnSubtracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubtracaoActionPerformed
+        
+        valor1 = Double.parseDouble(txtResultado.getText());
+        
+        txtResultado.setText("");
+        
+        sinal = "menos";
+    }//GEN-LAST:event_btnSubtracaoActionPerformed
+
+    private void btnMultiplicacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMultiplicacaoActionPerformed
+        
+        valor1 = Double.parseDouble(txtResultado.getText());
+        
+        txtResultado.setText("");
+    }//GEN-LAST:event_btnMultiplicacaoActionPerformed
 
     /**
      * @param args the command line arguments
