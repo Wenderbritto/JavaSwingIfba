@@ -4,6 +4,8 @@
  */
 package CadastroDeConta;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author wende
@@ -15,6 +17,8 @@ public class TelaCadastroDeContaComValidacoes extends javax.swing.JFrame {
      */
     public TelaCadastroDeContaComValidacoes() {
         initComponents();
+        
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -39,6 +43,7 @@ public class TelaCadastroDeContaComValidacoes extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema IFBA - Restrições e Validação de Campos de Entrada");
+        setResizable(false);
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblTitulo.setText("Cadastro de Conta");
@@ -76,10 +81,24 @@ public class TelaCadastroDeContaComValidacoes extends javax.swing.JFrame {
                 txtNumeroDaContaActionPerformed(evt);
             }
         });
+        txtNumeroDaConta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNumeroDaContaKeyTyped(evt);
+            }
+        });
 
         txtSaldoInicialDaConta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtSaldoInicialDaConta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtSaldoInicialDaContaKeyTyped(evt);
+            }
+        });
 
-        txfData.setText("jFormattedTextField1");
+        try {
+            txfData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -144,17 +163,60 @@ public class TelaCadastroDeContaComValidacoes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        // TODO add your handling code here:
+        
+        String nomeDoCliente = txtNomeDoCliente.getText();
+        String numeroDaConta = txtNumeroDaConta.getText();
+        String saldoInicialDaConta = txtSaldoInicialDaConta.getText();
+        String data = txfData.getText();
+        
+        String menssagem = "Nome do Cliente: " + nomeDoCliente +
+                "\nNúmero da Conta: " + numeroDaConta + 
+                "\nSaldo Inicial da Conta: " + saldoInicialDaConta +
+                "\nData: " + data;
+        
+        JOptionPane.showMessageDialog(this, menssagem);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void txtNumeroDaContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroDaContaActionPerformed
-        // TODO add your handling code here:
+       
+       
+                                        
+     
     }//GEN-LAST:event_txtNumeroDaContaActionPerformed
 
     private void txtNomeDoClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeDoClienteKeyTyped
         
+        char c = evt.getKeyChar();
         
+        if(!Character.isAlphabetic(c) && c !=' ')
+        {
+            evt.consume();
+        
+        }
     }//GEN-LAST:event_txtNomeDoClienteKeyTyped
+
+    private void txtNumeroDaContaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroDaContaKeyTyped
+        
+        char c = evt.getKeyChar();
+        
+        if(!Character.isDigit(c))
+        {
+            
+            evt.consume();
+        
+        }
+    }//GEN-LAST:event_txtNumeroDaContaKeyTyped
+
+    private void txtSaldoInicialDaContaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSaldoInicialDaContaKeyTyped
+        
+        char c = evt.getKeyChar();
+        
+        if(!Character.isDigit(c) && c !=  ',')
+        {
+            evt.consume();
+        
+        }
+    }//GEN-LAST:event_txtSaldoInicialDaContaKeyTyped
 
     /**
      * @param args the command line arguments
