@@ -169,12 +169,17 @@ public class TelaCalculadora extends javax.swing.JFrame {
         double valor1 = Double.parseDouble(txtValor1.getText());
         double valor2 = Double.parseDouble(txtValor2.getText());
         
+        /*String val1 = txtValor1.getText();
+        String val2 = txtValor2.getText();
+        
+        double valor1 = Double.parseDouble(val1);
+        double valor2 = Double.parseDouble(val2);*/
         
         String operacao = txtOperacao.getText();
         
-        double resultado = 0.0;
+        double resultado = 1;
         
-        resultado = valor1+valor2;
+        
         
         if(operacao == "+")
         {
@@ -188,12 +193,12 @@ public class TelaCalculadora extends javax.swing.JFrame {
         
         else if(operacao == "*")
         {
-            resultado = valor1*valor2;
+            resultado = valor1 * valor2;
         
         }
         else if(operacao == "/")
         {
-            resultado = valor1/valor2;
+            resultado = valor1 / valor2;
         }
         
         String resul = String.valueOf(resultado);
