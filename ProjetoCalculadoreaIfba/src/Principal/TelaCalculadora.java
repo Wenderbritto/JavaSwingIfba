@@ -177,26 +177,26 @@ public class TelaCalculadora extends javax.swing.JFrame {
         
         String operacao = txtOperacao.getText();
         
-        double resultado = 1;
+        double resultado = 0.0;
         
         
         
-        if(operacao == "+")
+        if(operacao.equals("+"))
         {
             resultado = valor1 + valor2;
         }
         
-        else if(operacao == "-")
+        else if(operacao.equals("-"))
         {
             resultado = valor1 - valor2;
         }
         
-        else if(operacao == "*")
+        else if(operacao.equals("*"))
         {
             resultado = valor1 * valor2;
         
         }
-        else if(operacao == "/")
+        else if(operacao.equals("/"))
         {
             resultado = valor1 / valor2;
         }
